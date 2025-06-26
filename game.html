@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cake Catcher with Stitch</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎂 Cake Catcher</h1>
+
+  <div class="game-container">
+    <canvas id="gameCanvas" width="950" height="700"></canvas>
+    <div class="side-panel">
+      <p>🎯 Score: <span id="score">0</span></p>
+      <p>⏳ Time Left: <span id="timer">30</span>s</p>
+      <p>💥 Missed: <span id="missed">0</span></p>
+      <p>🏆 High Score: <span id="highScore">0</span></p>
+      <button id="restartButton" onClick="restartGame()">🔁 Start</button>
+      <button id="homeButton" onClick="goHome()">🏠 Back</button>
+    </div>
+  </div>
+
+  <div id="gameOverPopup" class="popup hidden">
+    <h2>🎉 You caught <span id="finalScore">0</span> cakes! You’re a birthday hero!</h2>
+    <button id="gameOverRestart" onClick="restartGame()">🔁 Play Again</button>
+    <button id="gameOverHome" onClick="goHome()">🏠 Back to Birthday Page</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Happy Birthday Aayushi</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+:root {
+  --ocean-blue: #090c11;
+  --baby-blue: #467284;
+  --light-blue: #146d79;
+  --icy-blue: #276178;
+  --pastel-pink: #e59ca7;
+  --pastel-yellow: #fffacd;
+  --pastel-green: #98fb98;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+.font-bubbly {
+  font-family: 'Pacifico', cursive;
+}
+.balloon {
+  animation: float 6s ease-in-out infinite;
+  position: absolute;
+  opacity: 0.8;
+}
+.balloon-1 { animation-delay: 0s; left: 10%; top: 5%; width: 60px; height: 80px; background-color: var(--baby-blue); }
+.balloon-2 { animation-delay: -2s; left: 25%; top: 15%; width: 70px; height: 90px; background-color: var(--light-blue); }
+.balloon-3 { animation-delay: -4s; left: 70%; top: 8%; width: 50px; height: 70px; background-color: var(--icy-blue); }
+.balloon-4 { animation-delay: -1s; left: 85%; top: 12%; width: 65px; height: 85px; background-color: var(--pastel-pink); }
+.balloon-5 { animation-delay: -3s; left: 5%; top: 60%; width: 75px; height: 95px; background-color: var(--pastel-yellow); }
+.balloon-6 { animation-delay: -5s; left: 90%; top: 55%; width: 55px; height: 75px; background-color: var(--pastel-green); }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--pastel-pink);
+  animation: fall 3s linear infinite;
+  border-radius: 50%;
+}
+.confetti.c1 { left: 10%; animation-delay: 0s; background-color: var(--baby-blue);}
+.confetti.c2 { left: 20%; animation-delay: -0.5s; background-color: var(--light-blue);}
+.confetti.c3 { left: 30%; animation-delay: -1s; background-color: var(--icy-blue);}
+.confetti.c4 { left: 40%; animation-delay: -1.5s; background-color: var(--pastel-yellow);}
+.confetti.c5 { left: 50%; animation-delay: -2s; background-color: var(--pastel-green);}
+.confetti.c6 { left: 60%; animation-delay: -2.5s; background-color: var(--pastel-pink);}
+.confetti.c7 { left: 70%; animation-delay: -0.2s; background-color: var(--baby-blue);}
+.confetti.c8 { left: 80%; animation-delay: -0.8s; background-color: var(--light-blue);}
+.confetti.c9 { left: 90%; animation-delay: -1.2s; background-color: var(--icy-blue);}
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.stitch-image {
+  transition: transform 0.3s ease-in-out;
+}
+.stitch-image:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+</style>
+</head>
+<body class="bg-gradient-to-br from-[var(--baby-blue)] via-[var(--light-blue)] to-[var(--icy-blue)] min-h-screen flex flex-col items-center justify-center text-gray-800 overflow-hidden relative">
+
+<!-- Confetti -->
+<div class="confetti c1"></div>
+<div class="confetti c2"></div>
+<div class="confetti c3"></div>
+<div class="confetti c4"></div>
+<div class="confetti c5"></div>
+<div class="confetti c6"></div>
+<div class="confetti c7"></div>
+<div class="confetti c8"></div>
+<div class="confetti c9"></div>
+
+<!-- Balloons -->
+<div class="balloon balloon-1 rounded-full"></div>
+<div class="balloon balloon-2 rounded-full"></div>
+<div class="balloon balloon-3 rounded-full"></div>
+<div class="balloon balloon-4 rounded-full"></div>
+<div class="balloon balloon-5 rounded-full"></div>
+<div class="balloon balloon-6 rounded-full"></div>
+
+<!-- Main Content -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center p-8 w-full max-w-2xl">
+<header class="mb-8">
+<h1 style="font-family: 'Oswald', sans-serif;" class="text-5xl md:text-6xl text-[var(--ocean-blue)] drop-shadow-lg">
+        🎈Happy Birthday Aayushi💝😘🎂🥳!
+</h1>
+</header>
+<main class="flex flex-col items-center w-full">
+<div class="mb-8 relative group">
+<img alt="Cute Stitch with a gift" class="w-48 h-48 md:w-64 md:h-64 object-contain stitch-image cursor-pointer" src="Aayushi.jpg"/>
+</div>
+<a class="mb-12 px-10 py-4 text-xl font-semibold text-white bg-gradient-to-r from-[var(--ocean-blue)] to-[var(--baby-blue)] rounded-full shadow-xl hover:shadow-2xl hover:bg-gradient-to-r hover:from-[var(--baby-blue)] hover:to-[var(--icy-blue)] hover:scale-105 transform transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[var(--icy-blue)] focus:ring-opacity-50" href="game.html">
+        ▶️ Start Cake Catcher Game
+</a>
+</main>
+<footer class="text-center w-full">
+<div class="mb-4">
+<button class="p-2 rounded-full bg-white/50 hover:bg-white/75 transition-colors duration-200" id="musicToggle">
+<span class="material-icons text-[var(--ocean-blue)] text-3xl">music_note</span>
+</button>
+</div>
+<p class="text-sm text-gray-700">Crafted with 💙 for Aayushi</p>
+</footer>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="happy-birthday.mp3" loop></audio>
+
+<!-- Scripts -->
+<!-- Scripts -->
+<script>
+const musicToggle = document.getElementById('musicToggle');
+const bgMusic = document.getElementById('bgMusic');
+let isMuted = true;
+
+musicToggle.addEventListener('click', () => {
+  isMuted = !isMuted;
+  musicToggle.innerHTML = isMuted
+    ? '<span class="material-icons text-[var(--ocean-blue)] text-3xl">music_off</span>'
+    : '<span class="material-icons text-[var(--ocean-blue)] text-3xl">music_note</span>';
+
+  if (isMuted) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
+});
+
+// Optionally, autoplay if user taps the page
+window.addEventListener('click', () => {
+  if (!isMuted && bgMusic.paused) {
+    bgMusic.play();
+  }
+}, { once: true });
+</script>
+</body>
+</html>
