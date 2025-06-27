@@ -1,17 +1,26 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+let stitch = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 80,
+};
+
 function resizeCanvas() {
   canvas.width = Math.min(window.innerWidth - 20, 500);
   canvas.height = Math.min(window.innerHeight * 0.7, 600);
-  stitch.y = canvas.height - 90; // Adjust basket position on resize
+  stitch.x = canvas.width / 2 - stitch.width / 2;
+  stitch.y = canvas.height - stitch.height - 10;
 }
 
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
+// Load images
 const stitchImg = new Image();
-stitchImg.src = "./Basket.png";
+stitchImg.src = "Basket.png";
 
 const cupcakeImgs = ["cupcake1.png", "cupcake2.png"].map((src) => {
   const img = new Image();
@@ -28,16 +37,9 @@ const soundCatch = new Audio("catch.mp3");
 const soundBonus = new Audio("bonus.mp3");
 const soundBomb = new Audio("bomb.mp3");
 
-let stitch = {
-  x: canvas.width / 2 - 50,
-  y: canvas.height - 90,
-  width: 100,
-  height: 80
-};
-
 let cakes = [];
 let score = 0, missed = 0, timeLeft = 30, highScore = 0;
-let isRunning = true;
+let isRunning = false;
 let freezeTime = false;
 let timerInterval;
 
@@ -57,7 +59,7 @@ function drawStitch() {
 
 function drawCakes() {
   cakes.forEach((cake) => {
-    ctx.drawImage(cake.image, cake.x - 30, cake.y - 30, 50, 50);
+    ctx.drawImage(cake.image, cake.x - 25, cake.y - 25, 50, 50);
   });
 }
 
@@ -116,18 +118,16 @@ function spawnCake() {
 
 function gameLoop() {
   if (!isRunning) return;
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawStitch();
   drawCakes();
   updateCakes();
   checkCollision();
-
   if (Math.random() < 0.015) spawnCake();
-
   requestAnimationFrame(gameLoop);
 }
 
+// Movement controls
 canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   stitch.x = e.clientX - rect.left - stitch.width / 2;
@@ -207,23 +207,25 @@ function goHome() {
   window.location.href = "index.html";
 }
 
+// Add confetti keyframes
 const style = document.createElement("style");
 style.innerHTML = `@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }`;
 document.head.appendChild(style);
 
+// Wait until all images load before starting
 let imagesLoaded = 0;
 const allImages = [...cupcakeImgs, bonusImg, bombImg, luckyImg, timerImg, stitchImg];
 allImages.forEach((img) => {
   img.onload = () => {
     imagesLoaded++;
     if (imagesLoaded === allImages.length) {
-      startTimer();
-      gameLoop();
+      // Ready to start
     }
   };
 });
 
-window.onload = function() {
+// Bind restart button
+window.onload = function () {
   const restartButton = document.getElementById("gameOverRestart");
   if (restartButton) {
     restartButton.addEventListener("click", restartGame);
