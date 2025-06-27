@@ -1,18 +1,17 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Resize canvas dynamically for mobile
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 0.95;
-  canvas.height = window.innerHeight * 0.6;
-  stitch.x = canvas.width / 2 - 50;
-  stitch.y = canvas.height - 80;
+  canvas.width = Math.min(window.innerWidth - 20, 500);
+  canvas.height = Math.min(window.innerHeight * 0.7, 600);
+  stitch.y = canvas.height - 90; // Adjust basket position on resize
 }
+
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
 const stitchImg = new Image();
-stitchImg.src = "./Basket.png"; 
+stitchImg.src = "./Basket.png";
 
 const cupcakeImgs = ["cupcake1.png", "cupcake2.png"].map((src) => {
   const img = new Image();
@@ -20,23 +19,24 @@ const cupcakeImgs = ["cupcake1.png", "cupcake2.png"].map((src) => {
   return img;
 });
 
-const bonusImg = new Image();
-bonusImg.src = "bonus.png";
-const bombImg = new Image();
-bombImg.src = "bomb.png";
-const luckyImg = new Image();
-luckyImg.src = "lucky.png";
-const timerImg = new Image();
-timerImg.src = "timer.png";
+const bonusImg = new Image(); bonusImg.src = "bonus.png";
+const bombImg = new Image(); bombImg.src = "bomb.png";
+const luckyImg = new Image(); luckyImg.src = "lucky.png";
+const timerImg = new Image(); timerImg.src = "timer.png";
 
 const soundCatch = new Audio("catch.mp3");
 const soundBonus = new Audio("bonus.mp3");
 const soundBomb = new Audio("bomb.mp3");
 
-let stitch = { x: canvas.width / 2 - 50, y: canvas.height - 80, width: 100, height: 80 };
+let stitch = {
+  x: canvas.width / 2 - 50,
+  y: canvas.height - 90,
+  width: 100,
+  height: 80
+};
+
 let cakes = [];
 let score = 0, missed = 0, timeLeft = 30, highScore = 0;
-
 let isRunning = true;
 let freezeTime = false;
 let timerInterval;
@@ -50,6 +50,8 @@ const elemGameOverPopup = document.getElementById("gameOverPopup");
 const elemGameOverHeader = elemGameOverPopup.querySelector("h2");
 
 function drawStitch() {
+  if (stitch.x < 0) stitch.x = 0;
+  if (stitch.x + stitch.width > canvas.width) stitch.x = canvas.width - stitch.width;
   ctx.drawImage(stitchImg, stitch.x, stitch.y, stitch.width, stitch.height);
 }
 
@@ -81,26 +83,11 @@ function checkCollision() {
       cake.y - 20 < stitch.y + stitch.height
     ) {
       switch (cake.type) {
-        case "bonus":
-          score += 5;
-          soundBonus.play();
-          break;
-        case "bomb":
-          soundBomb.play();
-          endGame(true);
-          return;
-        case "lucky":
-          freezeTimer(5);
-          soundBonus.play();
-          break;
-        case "timer":
-          timeLeft += 10;
-          elemTimer.textContent = timeLeft;
-          soundBonus.play();
-          break;
-        default:
-          score += 1;
-          soundCatch.play();
+        case "bonus": score += 5; soundBonus.play(); break;
+        case "bomb": soundBomb.play(); endGame(true); return;
+        case "lucky": freezeTimer(5); soundBonus.play(); break;
+        case "timer": timeLeft += 10; elemTimer.textContent = timeLeft; soundBonus.play(); break;
+        default: score += 1; soundCatch.play();
       }
       elemScore.textContent = score;
       cakes.splice(i, 1);
@@ -119,15 +106,10 @@ function spawnCake() {
   let type = "normal";
   let img = cupcakeImgs[Math.floor(Math.random() * cupcakeImgs.length)];
 
-  if (rand < 0.1) {
-    type = "bonus"; img = bonusImg;
-  } else if (rand < 0.15) {
-    type = "bomb"; img = bombImg;
-  } else if (rand < 0.18) {
-    type = "lucky"; img = luckyImg;
-  } else if (rand < 0.21) {
-    type = "timer"; img = timerImg;
-  }
+  if (rand < 0.1) { type = "bonus"; img = bonusImg; }
+  else if (rand < 0.15) { type = "bomb"; img = bombImg; }
+  else if (rand < 0.18) { type = "lucky"; img = luckyImg; }
+  else if (rand < 0.21) { type = "timer"; img = timerImg; }
 
   cakes.push({ x, y: 0, speed: 3 + Math.random() * 2, type, image: img });
 }
@@ -141,9 +123,7 @@ function gameLoop() {
   updateCakes();
   checkCollision();
 
-  if (Math.random() < 0.015) {
-    spawnCake();
-  }
+  if (Math.random() < 0.015) spawnCake();
 
   requestAnimationFrame(gameLoop);
 }
@@ -152,19 +132,19 @@ canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   stitch.x = e.clientX - rect.left - stitch.width / 2;
 });
+
 canvas.addEventListener("touchmove", (e) => {
   const rect = canvas.getBoundingClientRect();
   const touch = e.touches[0];
   stitch.x = touch.clientX - rect.left - stitch.width / 2;
 });
 
-// Left and Right Button Controls
-const leftBtn = document.getElementById("leftButton");
-const rightBtn = document.getElementById("rightButton");
-if (leftBtn && rightBtn) {
-  leftBtn.addEventListener("touchstart", () => stitch.x -= 30);
-  rightBtn.addEventListener("touchstart", () => stitch.x += 30);
-}
+document.getElementById("leftBtn")?.addEventListener("click", () => {
+  stitch.x -= 20;
+});
+document.getElementById("rightBtn")?.addEventListener("click", () => {
+  stitch.x += 20;
+});
 
 function restartGame() {
   score = 0; missed = 0; timeLeft = 30;
@@ -174,7 +154,6 @@ function restartGame() {
   elemMissed.textContent = missed;
   elemTimer.textContent = timeLeft;
   elemFinalScore.textContent = score;
-
   elemGameOverPopup.classList.add("hidden");
   clearInterval(timerInterval);
   startTimer();
