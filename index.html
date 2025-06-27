@@ -28,14 +28,8 @@
       animation: float 6s ease-in-out infinite;
       position: absolute;
       opacity: 0.8;
+      border-radius: 50%;
     }
-
-    .balloon-1 { animation-delay: 0s; left: 10%; top: 5%; background-color: var(--baby-blue); }
-    .balloon-2 { animation-delay: -2s; left: 25%; top: 15%; background-color: var(--light-blue); }
-    .balloon-3 { animation-delay: -4s; left: 70%; top: 8%; background-color: var(--icy-blue); }
-    .balloon-4 { animation-delay: -1s; left: 85%; top: 12%; background-color: var(--silver); }
-    .balloon-5 { animation-delay: -3s; left: 5%; top: 60%; background-color: var(--baby-blue); }
-    .balloon-6 { animation-delay: -5s; left: 90%; top: 55%; background-color: var(--silver); }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -49,16 +43,6 @@
       border-radius: 50%;
       animation: fall 3s linear infinite;
     }
-
-    .confetti.c1 { left: 10%; animation-delay: 0s; background-color: var(--baby-blue); }
-    .confetti.c2 { left: 20%; animation-delay: -0.5s; background-color: var(--light-blue); }
-    .confetti.c3 { left: 30%; animation-delay: -1s; background-color: var(--silver); }
-    .confetti.c4 { left: 40%; animation-delay: -1.5s; background-color: var(--icy-blue); }
-    .confetti.c5 { left: 50%; animation-delay: -2s; background-color: var(--baby-blue); }
-    .confetti.c6 { left: 60%; animation-delay: -2.5s; background-color: var(--silver); }
-    .confetti.c7 { left: 70%; animation-delay: -0.2s; background-color: var(--light-blue); }
-    .confetti.c8 { left: 80%; animation-delay: -0.8s; background-color: var(--baby-blue); }
-    .confetti.c9 { left: 90%; animation-delay: -1.2s; background-color: var(--icy-blue); }
 
     @keyframes fall {
       0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
@@ -78,23 +62,27 @@
 <body class="bg-gradient-to-br from-[var(--baby-blue)] via-[var(--light-blue)] to-[var(--icy-blue)] min-h-screen flex flex-col items-center justify-center text-white overflow-hidden relative">
 
   <!-- Confetti -->
-  <div class="confetti c1"></div>
-  <div class="confetti c2"></div>
-  <div class="confetti c3"></div>
-  <div class="confetti c4"></div>
-  <div class="confetti c5"></div>
-  <div class="confetti c6"></div>
-  <div class="confetti c7"></div>
-  <div class="confetti c8"></div>
-  <div class="confetti c9"></div>
+  <div class="confetti c1" style="left: 5%; background-color: var(--baby-blue);"></div>
+  <div class="confetti c2" style="left: 15%; background-color: var(--light-blue);"></div>
+  <div class="confetti c3" style="left: 25%; background-color: var(--silver);"></div>
+  <div class="confetti c4" style="left: 35%; background-color: var(--icy-blue);"></div>
+  <div class="confetti c5" style="left: 45%; background-color: var(--baby-blue);"></div>
+  <div class="confetti c6" style="left: 55%; background-color: var(--silver);"></div>
+  <div class="confetti c7" style="left: 65%; background-color: var(--light-blue);"></div>
+  <div class="confetti c8" style="left: 75%; background-color: var(--baby-blue);"></div>
+  <div class="confetti c9" style="left: 85%; background-color: var(--icy-blue);"></div>
+  <div class="confetti c10" style="left: 95%; background-color: var(--silver);"></div>
 
   <!-- Balloons -->
-  <div class="balloon balloon-1 rounded-full w-12 h-16"></div>
-  <div class="balloon balloon-2 rounded-full w-14 h-18"></div>
-  <div class="balloon balloon-3 rounded-full w-10 h-14"></div>
-  <div class="balloon balloon-4 rounded-full w-12 h-16"></div>
-  <div class="balloon balloon-5 rounded-full w-14 h-18"></div>
-  <div class="balloon balloon-6 rounded-full w-10 h-14"></div>
+  <div class="balloon" style="left: 10%; top: 5%; width: 48px; height: 64px; background-color: var(--baby-blue);"></div>
+  <div class="balloon" style="left: 20%; top: 15%; width: 56px; height: 72px; background-color: var(--light-blue);"></div>
+  <div class="balloon" style="left: 30%; top: 10%; width: 44px; height: 60px; background-color: var(--icy-blue);"></div>
+  <div class="balloon" style="left: 40%; top: 12%; width: 50px; height: 66px; background-color: var(--silver);"></div>
+  <div class="balloon" style="left: 50%; top: 8%; width: 54px; height: 70px; background-color: var(--baby-blue);"></div>
+  <div class="balloon" style="left: 60%; top: 18%; width: 46px; height: 62px; background-color: var(--silver);"></div>
+  <div class="balloon" style="left: 70%; top: 6%; width: 60px; height: 80px; background-color: var(--light-blue);"></div>
+  <div class="balloon" style="left: 80%; top: 14%; width: 52px; height: 68px; background-color: var(--icy-blue);"></div>
+  <div class="balloon" style="left: 90%; top: 4%; width: 58px; height: 76px; background-color: var(--baby-blue);"></div>
 
   <!-- Main Content -->
   <div class="relative z-10 flex flex-col items-center justify-center text-center p-8 w-full max-w-2xl">
