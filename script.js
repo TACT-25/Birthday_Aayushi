@@ -132,10 +132,8 @@ function restartGame() {
   gameLoop();
 }
 
-document.getElementById("restartButton").addEventListener("click", restartGame);
 document.getElementById("gameOverRestart").addEventListener("click", restartGame);
 document.getElementById("gameOverHome").addEventListener("click", goHome);
-document.getElementById("homeButton").addEventListener("click", goHome);
 
 function endGame(bombCaught = false) {
   isRunning = false;
