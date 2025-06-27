@@ -1,6 +1,16 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+// Resize canvas dynamically for mobile
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 0.95;
+  canvas.height = window.innerHeight * 0.6;
+  stitch.x = canvas.width / 2 - 50;
+  stitch.y = canvas.height - 80;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
 const stitchImg = new Image();
 stitchImg.src = "./Basket.png"; 
 
@@ -131,7 +141,6 @@ function gameLoop() {
   updateCakes();
   checkCollision();
 
-  // Reduced the spawn rate slightly
   if (Math.random() < 0.015) {
     spawnCake();
   }
@@ -139,7 +148,6 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-// Input handling
 canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   stitch.x = e.clientX - rect.left - stitch.width / 2;
@@ -150,7 +158,14 @@ canvas.addEventListener("touchmove", (e) => {
   stitch.x = touch.clientX - rect.left - stitch.width / 2;
 });
 
-// Game controls
+// Left and Right Button Controls
+const leftBtn = document.getElementById("leftButton");
+const rightBtn = document.getElementById("rightButton");
+if (leftBtn && rightBtn) {
+  leftBtn.addEventListener("touchstart", () => stitch.x -= 30);
+  rightBtn.addEventListener("touchstart", () => stitch.x += 30);
+}
+
 function restartGame() {
   score = 0; missed = 0; timeLeft = 30;
   isRunning = true;
@@ -213,12 +228,10 @@ function goHome() {
   window.location.href = "index.html";
 }
 
-// Add confetti keyframes
 const style = document.createElement("style");
 style.innerHTML = `@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }`;
 document.head.appendChild(style);
 
-// Start only when all images are preloaded
 let imagesLoaded = 0;
 const allImages = [...cupcakeImgs, bonusImg, bombImg, luckyImg, timerImg, stitchImg];
 allImages.forEach((img) => {
@@ -231,7 +244,6 @@ allImages.forEach((img) => {
   };
 });
 
-// Bind restart handler explicitly
 window.onload = function() {
   const restartButton = document.getElementById("gameOverRestart");
   if (restartButton) {
